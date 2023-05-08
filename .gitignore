@@ -1,0 +1,11 @@
+# ignore virtual environment
+.venv/
+
+# ignore database file
+*.sqlite3
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# ignore env file
+*.env
