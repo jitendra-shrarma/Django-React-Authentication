@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
     # fields to be serialized
     class Meta:
         model = User
-        fields = ("id", "username", "email")
+        fields = ("username", "email")
 
 
 # SignUp Serializer
@@ -23,7 +23,7 @@ class SignUpSerializer(serializers.ModelSerializer):
     # fields to be serialized
     class Meta:
         model = User
-        fields = ("id", "username", "email", "password")
+        fields = ("username", "email", "password")
 
     # Validate email for uniqueness
     def validate_email(self, email):
@@ -44,10 +44,6 @@ class SignUpSerializer(serializers.ModelSerializer):
         password_validation.validate_password(password)
         return password
 
-    # Serializer's response
-    def to_representation(self, obj):
-        ret = super(ModelSerializer, self).to_representation(obj)
-    
     # Create new user with validated_data
     def create(self, validated_data):
         # Create user with fields( username, email, password)
@@ -68,7 +64,7 @@ class SignInSerializer(serializers.ModelSerializer):
     # fields to be serialized
     class Meta:
         model = User
-        fields = ("id", "username", "password")
+        fields = ("username", "password")
 
     # Validate username for uniqueness
     def validate_username(self, username):
