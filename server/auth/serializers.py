@@ -4,6 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth import password_validation
 from django.contrib.auth.models import User
 
+
 # User Serializer
 class UserSerializer(serializers.ModelSerializer):
     # fields to be serialized
@@ -69,12 +70,12 @@ class SignInSerializer(serializers.ModelSerializer):
         model = User
         fields = ("id", "username", "password")
 
-    # Validate email for uniqueness
-    def validate_email(self, email):
-        user = User.objects.filter(email=email).first()
+    # Validate username for uniqueness
+    def validate_username(self, username):
+        user = User.objects.filter(username=username).first()
         if not user:
-            raise serializers.ValidationError("Use another email.")
-        return email
+            raise serializers.ValidationError("Use another username.")
+        return username
 
     # Validate password by password_validation module
     def validate_password(self, password):

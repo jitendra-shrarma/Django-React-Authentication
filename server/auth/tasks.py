@@ -2,6 +2,7 @@
 from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth.models import User
+import schedule
 
 
 # Send email to all user with image attachment
@@ -15,7 +16,7 @@ def send_email_to_all_users_task():
     msg.attach_alternative(html_content, "text/html")
 
     # add tracking pixel to html content
-    tracking_pixel_url = 'http://yourdomain.com/tracking_pixel.gif?email={}'.format(user_email)
+    tracking_pixel_url = 'http://127.0.0.1:8000/tracking_pixel.gif?email={}'.format(user_email)
     html_content_with_tracking = html_content.replace('</body>', '<img src="{}"></body>'.format(tracking_pixel_url))
     msg.attach_alternative(html_content_with_tracking, "text/html")
 
@@ -26,3 +27,11 @@ def send_email_to_all_users_task():
     except:
         return False
 
+
+# Schedule task to run every 5 minutes
+schedule.every(1).minutes.do(send_email)
+
+# Run the scheduler
+while True:
+    schedule.run_pending()
+    time.sleep(1)
