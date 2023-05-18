@@ -90,7 +90,7 @@ class SignInAPIView(generics.GenericAPIView):
 
 # SignOutAPIView, used as_view for signout url,
 class SignOutAPIView(generics.GenericAPIView):
-    serializer_class = EmptySerializer
+    serializer_class = SignOutSerializer
 
     def delete(self, request):
         # Check for access_token and if request have no access_token or refresh_token, return response

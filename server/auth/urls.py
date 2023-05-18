@@ -3,7 +3,7 @@ import django_rest_passwordreset
 from django.urls import path, include
 
 # Import SignUpAPIView
-from .views import SignUpAPIView, SignInAPIView, SignOutAPIView, UserViewAPIView
+from .views import SignUpAPIView, SignInAPIView, SignOutAPIView
 
 
 # Create urlpatterns

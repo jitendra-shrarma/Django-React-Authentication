@@ -2,7 +2,7 @@
 from rest_framework import serializers
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth import password_validation
-
+from django.contrib.auth.models import User
 
 # User Serializer
 class UserSerializer(serializers.ModelSerializer):
